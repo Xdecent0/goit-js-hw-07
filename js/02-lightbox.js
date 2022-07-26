@@ -7,21 +7,10 @@ const galleryImages = galleryItems
       `<a class="gallery__item href="${original}"><img src="${preview}" data-source= "${original}" alt="${description}" class="gallery__image"/></a>`
   )
   .join("");
-
 gallery.insertAdjacentHTML("beforeend", galleryImages);
-gallery.addEventListener("click", OnImageClick);
-function OnImageClick(e) {
-  blockStandartAction(e);
-
-  if (e.target.tagName !== "IMG") {
-    return;
-  }
-
-  let lightbox = new SimpleLightbox(".gallery a", { captions });
-  lightbox.open(e.target.dataset.source);
-}
-
-function blockStandartAction(e) {
-  e.preventDefault();
-}
+const lightbox = new SimpleLightbox(".gallery a", {
+  captions: true,
+  captionsData: "alt",
+  captionDelay: 250,
+});
 console.log(galleryItems);
