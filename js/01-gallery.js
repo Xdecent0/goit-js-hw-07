@@ -33,17 +33,15 @@ function OnImageClick(e) {
     `<img src="${e.target.dataset.source}" width="1280" height="853">`
   );
   instance.show();
-  gallery.addEventListener("keydown", (e) => {
+  if (instance.visible()) {
+    window.addEventListener("keydown", onPressKeyESC);
+  }
+  function onPressKeyESC(e) {
     if (e.code === "Escape") {
       instance.close();
+      window.removeEventListener("keydown", onPressKeyESC);
     }
-  });
-
-  window.addEventListener("keydown", (e) => {
-    if (e.code === "Escape") {
-      instance.close();
-    }
-  });
+  }
 }
 
 function blockStandartAction(e) {
