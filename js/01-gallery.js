@@ -14,14 +14,6 @@ gallery.insertAdjacentHTML("beforeend", galleryImages);
 
 gallery.addEventListener("click", OnImageClick);
 
-gallery.addEventListener("keydown", OnKeyDown);
-
-function OnKeyDown(e) {
-  if (e.code === "Escape") {
-    console.log("Escape clicked  on gallery items");
-  }
-}
-
 function OnImageClick(e) {
   blockStandartAction(e);
 
