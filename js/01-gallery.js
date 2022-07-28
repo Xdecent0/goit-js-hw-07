@@ -18,11 +18,17 @@ function OnImageClick(e) {
   blockStandartAction(e);
 
   if (e.target.tagName !== "IMG") {
+    window.removeEventListener("keydown", onPressKeyESC);
     return;
   }
 
   const instance = basicLightbox.create(
-    `<img src="${e.target.dataset.source}" width="1280" height="853">`
+    `<img src="${e.target.dataset.source}" width="1280" height="853">`,
+    {
+      onClose: (instance) => {
+        window.removeEventListener("keydown", onPressKeyESC);
+      },
+    }
   );
   instance.show();
   if (instance.visible()) {
@@ -31,7 +37,6 @@ function OnImageClick(e) {
   function onPressKeyESC(e) {
     if (e.code === "Escape") {
       instance.close();
-      window.removeEventListener("keydown", onPressKeyESC);
     }
   }
 }
